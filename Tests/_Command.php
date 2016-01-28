@@ -7,7 +7,7 @@ function WebHelpDesk_Qualifier( $attribute, $operation, $value )
 	return "(" . $attribute . " " . $operation . " '".$value ."')";
 }
 
-function WebHelpDesk_Command( $resource = '', $params = array(), $qualifier = null, $configName = 'Gevity' )
+function WebHelpDesk_Command( $resource = '', $params = array(), $qualifier = null, $configName = CONFIG_Tech_Key )
 {
 	if ( is_null($resource) || strlen($resource) == 0) {
 		throw new \Exception('No request resource specified');

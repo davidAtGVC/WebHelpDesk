@@ -14,7 +14,7 @@ require SYSTEM_PATH .'Tests/_Command.php';
 
 //curl "https://localhost/helpdesk/WebObjects/Helpdesk.woa/ra/Tickets/1?username=admin&password=admin"
 
-$config = testConfig( "Gevity" );
+$config = testConfig( CONFIG_Client_Key );
 if ( is_array($config) && isset($config[CONFIG_base]) ) {
 	$params = array(
 		"list" => "mine",

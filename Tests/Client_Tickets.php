@@ -20,7 +20,7 @@ $ curl "https://localhost/helpdesk/WebObjects/Helpdesk.woa\
 
 */
 
-list($json, $headers) = WebHelpDesk_Command( 'clientInterface/Tickets' );
+list($json, $headers) = WebHelpDesk_Command( 'clientInterface/Tickets', null, null, CONFIG_Client_Key );
 
 echo json_encode($json, JSON_PRETTY_PRINT) .PHP_EOL;
 

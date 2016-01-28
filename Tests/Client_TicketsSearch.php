@@ -24,7 +24,7 @@ $ curl "https://localhost/helpdesk/WebObjects/Helpdesk.woa\
 // echo "Options " . var_export($options, true) . PHP_EOL. PHP_EOL;
 
 $qualifier = WebHelpDesk_Qualifier( Ticket_Fields::subject, Qualifier_Operation::Like, "Internal name*");
-list($json, $headers) = WebHelpDesk_Command( 'clientInterface/Tickets', null, $qualifier );
+list($json, $headers) = WebHelpDesk_Command( 'clientInterface/Tickets', null, $qualifier, CONFIG_Client_Key );
 
 echo json_encode($json, JSON_PRETTY_PRINT) .PHP_EOL;
 

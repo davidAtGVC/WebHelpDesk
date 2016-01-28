@@ -3,11 +3,14 @@
 defined('SYSTEM_PATH') || exit("SYSTEM_PATH not found.");
 
 define('CONFIG', "HelpDeskConfig.json");
+define('CONFIG_Client_Key', "Client_1");
+define('CONFIG_Tech_Key', "Technician_1");
 
 define('CONFIG_name', "name");
 define('CONFIG_base', "base");
 define('CONFIG_user', "user");
 define('CONFIG_password', "password");
+define('CONFIG_apikey', "apikey");
 
 function join_path()
 {
@@ -40,7 +43,7 @@ function join_path()
 function test_path($name = null)
 {
 	is_null($name) == false || die( "no test file specified");
-	$path = join_path( SYSTEM_PATH, "tests", $name );
+	$path = join_path( SYSTEM_PATH, "Tests", $name );
 	return $path;
 }
 
@@ -67,18 +70,25 @@ function testConfig( $name = '' )
 	$filename = test_path( CONFIG );
 	if ( test_isFile( CONFIG ) == false ) {
 		$config = array(
-			"Config 1" => array(
+			CONFIG_Client_Key => array(
 				CONFIG_name => "My Web Helpdesk",
 				CONFIG_base => "https://localhost/helpdesk/WebObjects/Helpdesk.woa",
-				CONFIG_user => "username",
+				CONFIG_user => "client",
 				CONFIG_password => "password"
+			),
+			CONFIG_Tech_Key => array(
+				CONFIG_name => "My Web Helpdesk",
+				CONFIG_base => "https://localhost/helpdesk/WebObjects/Helpdesk.woa",
+				CONFIG_user => "technician",
+				CONFIG_password => "password",
+				CONFIG_apikey => "apikey"
 			)
 		);
 		$returnValue = file_put_contents( $filename, json_encode($config, JSON_PRETTY_PRINT));
 		if ( json_last_error() != 0 ) {
 			throw new \Exception( jsonErrorString(json_last_error()) );
 		}
-		echo "Created new configuration at $filename, please update with your parameters";
+		echo "Created new configuration at $filename, please update with your parameters" . PHP_EOL. PHP_EOL;
 		exit(1);
 	}
 
